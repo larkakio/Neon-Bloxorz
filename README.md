@@ -17,6 +17,15 @@ The repo is a **monorepo**: the Next.js app lives in **`web/`**. Do **not** put 
 
 Add the same **`NEXT_PUBLIC_*`** env vars in **Vercel → Settings → Environment Variables** as in your local `web/.env.local`.
 
+### Base.dev shows “Failed to fetch URL”
+
+That almost always means the **production URL does not return your app** (often **HTTP 404**). Until `https://neon-bloxorz.vercel.app` opens the game in a browser, Base cannot read the `<meta name="base:app_id" …>` tag.
+
+1. Confirm in the browser: the site should load **not** “404: NOT_FOUND”.
+2. Fix **Root Directory = `web`** and redeploy (see above).
+3. In Base.dev, use the full URL: **`https://neon-bloxorz.vercel.app`** (with `https://`).
+4. Retry **Verify & Add** after a successful deploy.
+
 ```bash
 cd web && npm install && npm run dev
 ```
