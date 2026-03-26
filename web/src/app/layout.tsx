@@ -23,6 +23,10 @@ const dmSans = DM_Sans({
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://neon-bloxorz.vercel.app";
 
+/** Base.dev “Verify & Add URL” — must appear on the deployed homepage <head>. */
+const baseAppId =
+  process.env.NEXT_PUBLIC_BASE_APP_ID ?? "69c4fbc8875674902db2b29a";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Bloxorz — Base",
@@ -30,6 +34,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "/bloxorz-app-icon.png",
     apple: "/bloxorz-app-icon.png",
+  },
+  other: {
+    "base:app_id": baseAppId,
   },
 };
 
