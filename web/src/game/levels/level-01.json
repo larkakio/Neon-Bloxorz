@@ -1,0 +1,16 @@
+{
+  "id": "level-01",
+  "name": "Neon Gate",
+  "width": 7,
+  "height": 7,
+  "tiles": [
+    ["void", "void", "void", "void", "void", "void", "void"],
+    ["void", "floor", "floor", "floor", "floor", "floor", "void"],
+    ["void", "floor", "floor", "floor", "floor", "floor", "void"],
+    ["void", "floor", "floor", "goal", "floor", "floor", "void"],
+    ["void", "floor", "floor", "floor", "floor", "floor", "void"],
+    ["void", "floor", "floor", "floor", "floor", "floor", "void"],
+    ["void", "void", "void", "void", "void", "void", "void"]
+  ],
+  "start": { "x": 1, "y": 1, "orientation": "standing" }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "level-02",
+  "name": "Chromatic Bridge",
+  "width": 9,
+  "height": 5,
+  "tiles": [
+    ["void", "void", "void", "void", "void", "void", "void", "void", "void"],
+    ["void", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "void"],
+    ["void", "floor", "floor", "floor", "goal", "floor", "floor", "floor", "void"],
+    ["void", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "void"],
+    ["void", "void", "void", "void", "void", "void", "void", "void", "void"]
+  ],
+  "start": { "x": 1, "y": 1, "orientation": "horizontal" }
+}
