@@ -5,12 +5,11 @@ import { base, baseSepolia } from "wagmi/chains";
 
 const SUPPORTED = new Set<number>([base.id, baseSepolia.id]);
 
-/** Prefer Base Sepolia in dev unless NEXT_PUBLIC_CHAIN_ID is set (8453 or 84532). */
+/** Default: Base mainnet. Set NEXT_PUBLIC_CHAIN_ID=84532 to target Sepolia. */
 function targetChain() {
   const raw = process.env.NEXT_PUBLIC_CHAIN_ID;
-  if (raw === "8453") return base;
   if (raw === "84532") return baseSepolia;
-  return baseSepolia;
+  return base;
 }
 
 export function ChainBanner() {

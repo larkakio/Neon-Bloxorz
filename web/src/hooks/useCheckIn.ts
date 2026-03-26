@@ -58,7 +58,6 @@ export function useCheckIn() {
 
   return {
     contractConfigured: Boolean(contract),
-    suffixConfigured: Boolean(suffix),
     isConnected,
     address,
     lastCheckDay,

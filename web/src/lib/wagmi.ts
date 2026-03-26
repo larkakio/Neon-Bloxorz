@@ -1,6 +1,9 @@
 import { http, createConfig, createStorage, cookieStorage } from "wagmi";
 import { base, baseSepolia } from "wagmi/chains";
-import { injected, baseAccount } from "wagmi/connectors";
+import { baseAccount, injected, walletConnect } from "wagmi/connectors";
+
+const walletConnectProjectId =
+  process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID ?? "";
 
 export const config = createConfig({
   chains: [base, baseSepolia],
@@ -9,6 +12,14 @@ export const config = createConfig({
     baseAccount({
       appName: "Bloxorz",
     }),
+    ...(walletConnectProjectId
+      ? [
+          walletConnect({
+            projectId: walletConnectProjectId,
+            showQrModal: true,
+          }),
+        ]
+      : []),
   ],
   storage: createStorage({ storage: cookieStorage }),
   ssr: true,

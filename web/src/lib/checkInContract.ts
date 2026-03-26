@@ -50,7 +50,13 @@ export function getCheckInAddress(): Address | undefined {
   return raw as Address;
 }
 
-/** Hex from Base.dev → Settings → Builder Code (ERC-8021 suffix). */
+/** Display id from Base.dev Builder Code (e.g. bc_…). */
+export function getBuilderCodeLabel(): string {
+  const raw = process.env.NEXT_PUBLIC_BUILDER_CODE?.trim();
+  return raw && raw.length > 0 ? raw : "bc_k4ij8vow";
+}
+
+/** Hex from Base.dev → Builder Code integration (ERC-8021 data suffix for txs). */
 export function getBuilderDataSuffix(): `0x${string}` | undefined {
   const raw = process.env.NEXT_PUBLIC_BUILDER_CODE_SUFFIX;
   if (!raw || raw === "0x") return undefined;

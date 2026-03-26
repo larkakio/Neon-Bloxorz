@@ -240,12 +240,6 @@ export function GameScreen() {
             Set <code className="rounded bg-white/5 px-1">NEXT_PUBLIC_CHECK_IN_CONTRACT_ADDRESS</code> after deploy.
           </p>
         ) : null}
-        {checkIn.contractConfigured && !checkIn.suffixConfigured ? (
-          <p className="mt-2 text-xs text-zinc-500">
-            Optional: set <code className="rounded bg-white/5 px-1">NEXT_PUBLIC_BUILDER_CODE_SUFFIX</code> for Base.dev
-            attribution.
-          </p>
-        ) : null}
         <button
           type="button"
           disabled={

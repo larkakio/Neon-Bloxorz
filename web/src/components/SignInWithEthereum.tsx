@@ -4,6 +4,14 @@ import { useState } from "react";
 import { createSiweMessage, generateSiweNonce } from "viem/siwe";
 import { useConnection, usePublicClient, useSignMessage } from "wagmi";
 
+function formatSignError(e: unknown): string {
+  const msg = e instanceof Error ? e.message : String(e);
+  if (/user rejected|denied|User rejected|cancel/i.test(msg)) {
+    return "Signature was cancelled.";
+  }
+  return msg;
+}
+
 export function SignInWithEthereum() {
   const { address, chainId, isConnected } = useConnection();
   const [isSigningIn, setIsSigningIn] = useState(false);
@@ -34,7 +42,7 @@ export function SignInWithEthereum() {
       if (!valid) throw new Error("SIWE verification failed");
       setVerified(true);
     } catch (e) {
-      setErr(e instanceof Error ? e.message : "Sign-in failed");
+      setErr(formatSignError(e));
       setVerified(false);
     } finally {
       setIsSigningIn(false);
@@ -52,10 +60,10 @@ export function SignInWithEthereum() {
         className="rounded-xl border border-cyan-400/40 bg-cyan-500/10 px-4 py-2.5 text-sm font-medium text-cyan-100/90 shadow-[0_0_20px_rgba(34,211,238,0.15)] disabled:opacity-50"
       >
         {verified
-          ? "Signed in (SIWE)"
+          ? "Wallet verified"
           : isSigningIn
             ? "Signing…"
-            : "Sign in with Ethereum"}
+            : "Sign with wallet"}
       </button>
       {err ? <p className="text-xs text-rose-400/90">{err}</p> : null}
     </div>

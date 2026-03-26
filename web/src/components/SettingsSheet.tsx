@@ -1,5 +1,6 @@
 "use client";
 
+import { getBuilderCodeLabel } from "@/lib/checkInContract";
 import { getHapticsEnabled, setHapticsEnabled } from "@/lib/haptics";
 
 type Props = {
@@ -28,6 +29,19 @@ export function SettingsSheet({ open, onClose }: Props) {
             className="h-5 w-10 accent-cyan-400"
           />
         </label>
+        <div className="mt-8 rounded-2xl border border-white/10 bg-zinc-900/50 px-4 py-3">
+          <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+            Builder code
+          </p>
+          <p className="mt-1 font-mono text-sm text-zinc-200">
+            {getBuilderCodeLabel()}
+          </p>
+          <p className="mt-2 text-xs text-zinc-500">
+            On-chain attribution uses the hex suffix from Base.dev (
+            <code className="text-zinc-400">NEXT_PUBLIC_BUILDER_CODE_SUFFIX</code>
+            ).
+          </p>
+        </div>
       </div>
     </div>
   );

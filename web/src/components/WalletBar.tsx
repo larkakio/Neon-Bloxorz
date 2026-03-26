@@ -1,11 +1,13 @@
 "use client";
 
-import { useConnect, useDisconnect, useConnection } from "wagmi";
+import { useState } from "react";
+import { useDisconnect, useConnection } from "wagmi";
+import { ConnectWalletSheet } from "@/components/ConnectWalletSheet";
 
 export function WalletBar() {
-  const { connect, connectors, isPending } = useConnect();
   const { disconnect } = useDisconnect();
   const { address, isConnected } = useConnection();
+  const [connectOpen, setConnectOpen] = useState(false);
 
   if (isConnected && address) {
     return (
@@ -25,18 +27,18 @@ export function WalletBar() {
   }
 
   return (
-    <div className="flex flex-wrap justify-end gap-2">
-      {connectors.map((c) => (
-        <button
-          key={c.uid}
-          type="button"
-          disabled={isPending}
-          onClick={() => connect({ connector: c })}
-          className="rounded-xl bg-gradient-to-r from-fuchsia-600/80 to-cyan-500/80 px-3 py-2 text-xs font-semibold text-white shadow-lg shadow-fuchsia-500/20"
-        >
-          {c.name}
-        </button>
-      ))}
-    </div>
+    <>
+      <button
+        type="button"
+        onClick={() => setConnectOpen(true)}
+        className="rounded-xl bg-gradient-to-r from-fuchsia-600/80 to-cyan-500/80 px-4 py-2.5 text-xs font-semibold text-white shadow-lg shadow-fuchsia-500/20"
+      >
+        Connect wallet
+      </button>
+      <ConnectWalletSheet
+        open={connectOpen}
+        onClose={() => setConnectOpen(false)}
+      />
+    </>
   );
 }
