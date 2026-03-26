@@ -20,7 +20,11 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "600"],
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://neon-bloxorz.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Bloxorz — Base",
   description: "Mobile Bloxorz-style puzzle on Base with daily onchain check-in.",
   icons: {
